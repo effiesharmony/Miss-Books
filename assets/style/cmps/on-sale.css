@@ -1,0 +1,11 @@
+.on-sale{
+    position: absolute;
+    background-color: var(--clr3);
+    padding: 5px 10px;
+    top: 10px;
+    left: -15px;
+}
+
+.on-sale h4{
+    font-weight: bold;
+}

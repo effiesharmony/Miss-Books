@@ -13,4 +13,6 @@
 @import 'cmps/user-msg.css';
 @import 'cmps/book-filter.css';
 @import 'cmps/book-details.css';
-@import 'cmps/book-list.css'
+@import 'cmps/book-list.css';
+@import 'cmps/on-sale.css';
+@import 'cmps/book-preview.css';

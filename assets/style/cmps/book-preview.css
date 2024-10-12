@@ -6,12 +6,15 @@
     align-items: center;
 }
 
-.car-preview h2 {
+.book-preview h2 {
     text-transform: capitalize;
     color: black;
 }
 
-.car-preview img {
-    position: relative;
+.book-preview img {
     max-width: 200px;
+}
+
+.book-img {
+    position: relative;
 }
