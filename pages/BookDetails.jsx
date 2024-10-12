@@ -1,9 +1,12 @@
+const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 import { bookService } from "../services/book.service.js"
 
-export function BookDetails({ bookId, onSelectBookId }) {
+export function BookDetails() {
 
     const [book, setBook] = useState(null)
+    const { bookId } = useParams()
+    const navigate = useNavigate()
 
     function getBook() {
         bookService.get(bookId)
@@ -52,7 +55,7 @@ export function BookDetails({ bookId, onSelectBookId }) {
             <p>{book.description}</p>
             <p>Pages: {book.pageCount} - {readingLevel}</p>
             <h2 className={`${bookPrice}`}>{book.listPrice.amount} {book.listPrice.currencyCode}</h2>
-            <button onClick={() => onSelectBookId(null)}>Back</button>
+            <button onClick={() => navigate('/books')}>Back</button>
         </section>
     )
 }

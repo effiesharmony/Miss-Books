@@ -2,13 +2,11 @@ const { useState, useEffect } = React
 
 import { BookList } from "../cmps/BookList.jsx"
 import { bookService } from "../services/book.service.js"
-import { BookDetails } from "./BookDetails.jsx"
 import { BookFilter } from "../cmps/BookFilter.jsx"
 
 export function BookIndex() {
 
     const [books, setBooks] = useState(null)
-    const [selectedBookId, setSelectedBookId] = useState(null)
     const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
 
     useEffect(() => {
@@ -23,10 +21,6 @@ export function BookIndex() {
             })
     }
 
-    function onSelectBookId(bookId) {
-        setSelectedBookId(bookId)
-    }
-
     function onSetFilter(newFilterBy){
         setFilterBy(prevFilter => ({...prevFilter, ...newFilterBy}))
     }
@@ -35,20 +29,10 @@ export function BookIndex() {
 
     return (
         <section className="book-index">
-            {!selectedBookId
-                ? <React.Fragment>
+                 <React.Fragment>
                     <BookFilter onSetFilter={onSetFilter} filterBy={filterBy}/>
-                    <BookList books={books} onSelectBookId={onSelectBookId}/>
+                    <BookList books={books}/>
                 </React.Fragment>
-                : <BookDetails bookId={selectedBookId} onSelectBookId={onSelectBookId}/>
-            }
         </section>
     )
 }
-
-
-// const [filterBy, setFilterBy] = useState(bookService.getDefaultFilter())
-
-// function onSetFilter(filterByToEdit) {
-//     setFilterBy(prevFilter => ({...prevFilter, ...filterByToEdit}))
-// }
