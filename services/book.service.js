@@ -9,21 +9,19 @@ export const bookService = {
     get,
     remove,
     save,
-    getEmptyBook,
     getDefaultFilter,
 }
 
-function query() {
-    // function query(filterBy = {}) {
+function query(filterBy = {}) {
     return storageService.query(BOOK_KEY)
         .then(books => {
-            // if (filterBy.txt) {
-            //     const regExp = new RegExp(filterBy.txt, 'i')
-            //     books = books.filter(book => regExp.test(book.vendor))
-            // }
-            // if (filterBy.minSpeed) {
-            //     books = books.filter(book => book.speed >= filterBy.minSpeed)
-            // }
+            if (filterBy.title) {
+                const regExp = new RegExp(filterBy.title, 'i')
+                books = books.filter(book => regExp.test(book.title))
+            }
+            if (filterBy.maxPrice) {
+                books = books.filter(book => book.listPrice.amount <= filterBy.maxPrice)
+            }
             return books
         })
 }
@@ -45,12 +43,8 @@ function save(book) {
     }
 }
 
-function getEmptyBook(vendor = '', speed = '') {
-    return { vendor, speed }
-}
-
 function getDefaultFilter() {
-    return { txt: '', minSpeed: '' }
+    return { title: '', maxPrice: '' }
 }
 
 function _createBooks() {
