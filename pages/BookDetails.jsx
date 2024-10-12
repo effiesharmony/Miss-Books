@@ -1,6 +1,7 @@
-const { useParams, useNavigate, Link } = ReactRouterDOM
+const { useParams, useNavigate} = ReactRouterDOM
 const { useState, useEffect } = React
 import { bookService } from "../services/book.service.js"
+import { AddReview } from "../cmps/AddReview.jsx"
 
 export function BookDetails() {
 
@@ -45,6 +46,7 @@ export function BookDetails() {
     const bookPrice = getBookPrice()
 
     return (
+        <React.Fragment>
         <section className="book-details">
             <h1>{book.title}</h1>
             <h3>{book.subtitle}</h3>
@@ -57,5 +59,9 @@ export function BookDetails() {
             <h2 className={`${bookPrice}`}>{book.listPrice.amount} {book.listPrice.currencyCode}</h2>
             <button onClick={() => navigate('/books')}>Back</button>
         </section>
+        <section className="add-review">
+            <AddReview></AddReview>
+        </section>
+        </React.Fragment>
     )
 }

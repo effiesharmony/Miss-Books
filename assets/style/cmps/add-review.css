@@ -1,0 +1,21 @@
+.add-review{
+    background-color: var(--clr1);
+    padding-inline-start: 15px;
+    padding-top: 5px;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+#review{
+    width: 40vw;
+    height: 10em;
+    vertical-align: text-top;
+}
+
+.add-review h2{
+    margin-top: 0;
+}
+
+.add-review>*{
+    margin-bottom: 10px;
+}
