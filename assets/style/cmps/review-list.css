@@ -1,0 +1,13 @@
+.review-list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    gap: 1em;
+}
+
+.review-list li{
+    padding: .7em;
+    background-color: mistyrose;
+    border-radius: .7em;
+}

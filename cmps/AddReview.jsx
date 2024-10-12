@@ -12,7 +12,7 @@ export function AddReview() {
         const fullReview = {
             fullName: fullName.value,
             rating: rating.value,
-            redAt: readAt.value,
+            readAt: readAt.value,
             review: review.value
         }
 

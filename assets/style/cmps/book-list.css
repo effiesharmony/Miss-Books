@@ -5,10 +5,12 @@
     gap: 15px;
 }
 
-.car-list li {
+.book-list li {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    background-color: var(--clr1);
+    padding: 15px 20px;
+    border-radius: 10px;
+    background-color: mistyrose;
 }

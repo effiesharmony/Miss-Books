@@ -28,7 +28,7 @@ function query(filterBy = {}) {
 }
 
 function get(bookId) {
-    return storageService.get(BOOK_KEY, bookId)
+    return storageService.get(BOOK_KEY, bookId).then(_setNeighborBookId)
 }
 
 function remove(bookId) {
@@ -54,4 +54,13 @@ function getDefaultFilter() {
 
 function _createBooks() {
     localStorage.setItem(BOOK_KEY, JSON.stringify(books))
+}
+
+function _setNeighborBookId(book) {
+    return query().then((books) => {
+        const bookIdx = books.findIndex((currBook) => currBook.id === book.id)
+        book.nextBookId = books[bookIdx + 1] ? books[bookIdx + 1].id : books[0].id
+        book.prevBookId = books[bookIdx - 1] ? books[bookIdx - 1].id : books[books.length - 1].id
+        return book
+    })
 }

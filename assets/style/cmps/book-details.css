@@ -5,3 +5,16 @@
 .cheap{
     color: rgb(68, 172, 115);
 }
+
+.book-details{
+    
+}
+
+.nav-btns{
+    display: flex;
+    justify-content: space-between
+}
+
+.next-btn{
+    align-self: ;
+}

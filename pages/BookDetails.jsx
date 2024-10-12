@@ -1,7 +1,8 @@
-const { useParams, useNavigate} = ReactRouterDOM
+const { useParams, useNavigate, Link } = ReactRouterDOM
 const { useState, useEffect } = React
 import { bookService } from "../services/book.service.js"
 import { AddReview } from "../cmps/AddReview.jsx"
+import { ReviewList } from "../cmps/ReviewList.jsx"
 
 export function BookDetails() {
 
@@ -12,6 +13,9 @@ export function BookDetails() {
     function getBook() {
         bookService.get(bookId)
             .then(setBook)
+            .catch(err => {
+                console.log('Problem getting Book:', err)
+            })
     }
 
     useEffect(() => {
@@ -44,24 +48,32 @@ export function BookDetails() {
     const readingLevel = getReadingLevel()
     const bookAge = getBookAge()
     const bookPrice = getBookPrice()
-
+    console.log(book)
     return (
         <React.Fragment>
-        <section className="book-details">
-            <h1>{book.title}</h1>
-            <h3>{book.subtitle}</h3>
-            <img src={book.thumbnail} alt="Book Image" />
-            <p>Written by {book.authors}</p>
-            <p>Published in {book.publishedDate}{bookAge}</p>
-            <h3>Description</h3>
-            <p>{book.description}</p>
-            <p>Pages: {book.pageCount} - {readingLevel}</p>
-            <h2 className={`${bookPrice}`}>{book.listPrice.amount} {book.listPrice.currencyCode}</h2>
-            <button onClick={() => navigate('/books')}>Back</button>
-        </section>
-        <section className="add-review">
-            <AddReview></AddReview>
-        </section>
+            <section className="book-details">
+                <button onClick={() => navigate('/books')}>Back to books</button>
+                <h1>{book.title}</h1>
+                <h3>{book.subtitle}</h3>
+                <img src={book.thumbnail} alt="Book Image" />
+                <p>Written by {book.authors}</p>
+                <p>Published in {book.publishedDate}{bookAge}</p>
+                <h3>Description</h3>
+                <p>{book.description}</p>
+                <p>Pages: {book.pageCount} - {readingLevel}</p>
+                <h2 className={`${bookPrice}`}>{book.listPrice.amount} {book.listPrice.currencyCode}</h2>
+                <div className="nav-btns">
+                    <button onClick={() => window.location.reload()}><Link to={`/book/${book.prevBookId}`}>Previous Book</Link></button>
+                    <button onClick={() => window.location.reload()} className="next-btn"><Link to={`/book/${book.nextBookId}`}>Next Book</Link></button>
+                </div>
+
+            </section>
+            <section className="add-review">
+                <AddReview></AddReview>
+            </section>
+            <section className="reviews">
+                <ReviewList bookId={bookId} />
+            </section>
         </React.Fragment>
     )
 }
